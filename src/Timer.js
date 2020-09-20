@@ -3,6 +3,7 @@ import SecondsTohhmmss from './SecondsTohhmmss'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 
+
 let offset = null, interval = null
 
 /**
@@ -20,7 +21,20 @@ class Timer extends Component {
     super(props)
     this.state = { clock: 0, time: '' ,}
   }
-
+  componentDidUpdate(prevProps , prevState){
+    if(prevProps.exists !== this.props.exists){
+      if(this.props.exists){
+        if(this.state.clock > 0){
+          this.play()
+        }
+      }
+      else{
+        if(this.state.clock > 0){
+          this.pause()
+        }
+      }
+    }
+  }
   componentDidMount() {
     this.pause()
   }
@@ -48,9 +62,11 @@ class Timer extends Component {
     }
   }
 
+
+
   tick(){
       console.log(this.state.clock)
-      if(this.state.time.includes('00:00:09.9')){
+      if(this.state.clock > 50000){
           this.reset()
           this.pause()
       }
