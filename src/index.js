@@ -30,11 +30,13 @@ function reducer(state = inital_state, action){
         user_upset:false
       }
     case "USER_UPSET":
+      console.log("user upset")
       return {
         exists:state.exists,
         user_upset:true
       }
     case "USER_HAPPY":
+      console.log("user")
       return {
         exists:state.exists,
         user_upset:false

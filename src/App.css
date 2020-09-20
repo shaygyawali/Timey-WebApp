@@ -7,9 +7,10 @@
 
 .holder1{
   width: 700px;
+  height: 1000px;
   z-index: -1;
   position: relative;
-  margin-left: 1150px;
+  margin-left: 1270px;
   /*border: 1px solid black;*/
   display: flex;
   flex-direction: column;
@@ -45,11 +46,10 @@
 .holder2{
   z-index: -2;
   position: relative;
-  border: 1px solid green;
-  margin-top: -950px;
+  margin-top: -1000px;
   display: flex;
   flex-direction: column;
-  height: 900px;
+  height: 1000px;
   justify-content: space-between;
 }
 
@@ -137,6 +137,5 @@
    }
    
  }
- 
  
  

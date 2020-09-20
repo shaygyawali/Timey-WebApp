@@ -39,14 +39,14 @@ function imgProcess(picture){
           props.dispatch({type:"USER_HERE"})
           if(upset_emotions.includes(response.emotion)){
             var certainty = parseFloat(response.certainty)
-            if(certainty > 0.7){
+            if(certainty > 0.6){
               alert("It looks like youre a bit stressed , take rest if you can")
               props.dispatch({type:"USER_UPSET"})
             }
           }
           if(happy_emotions.includes(response.emotion)){
             var certainty = parseFloat(response.certainty)
-            if(certainty > 0.7){
+            if(certainty > 0.6){
               alert("Wohoo!!!! Keep working hard")
               props.dispatch({type:"USER_HAPPY"})
             }
