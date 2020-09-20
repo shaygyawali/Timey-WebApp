@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import ReactDOM from 'react-dom';
+import React, { useEffect } from 'react';
 import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
 import Webcam from "react-webcam";
 import { connect } from 'react-redux';
 
 
+const upset_emotions = ["angry" , "fear" , "sad"]
+const happy_emotions = ["happy"]
 
 const WebcamCapture = (props) => {
   const webcamRef = React.useRef(null);
@@ -22,7 +21,6 @@ const WebcamCapture = (props) => {
 }, [webcamRef, setImgSrc],);
 
 function imgProcess(picture){
-  console.log(picture)
   const formdata = new FormData()
   formdata.append('file' , picture)
 
@@ -30,15 +28,29 @@ function imgProcess(picture){
     method: 'POST',
     body: formdata,
   };
-
   fetch("http://127.0.0.1:5000/check_face_exists", requestOptions)
   .then((response)=> response.json())
   .then((response) => {
+      console.log(response)
       if(!response.face_exists){
           props.dispatch({type:"USER_LEFT"})
       }
       else{
           props.dispatch({type:"USER_HERE"})
+          if(upset_emotions.includes(response.emotion)){
+            var certainty = parseFloat(response.certainty)
+            if(certainty > 0.7){
+              alert("It looks like youre a bit stressed , take rest if you can")
+              props.dispatch({type:"USER_UPSET"})
+            }
+          }
+          if(happy_emotions.includes(response.emotion)){
+            var certainty = parseFloat(response.certainty)
+            if(certainty > 0.7){
+              alert("Wohoo!!!! Keep working hard")
+              props.dispatch({type:"USER_HAPPY"})
+            }
+          }
       }
   })
   .catch((err) => {
@@ -72,7 +84,6 @@ useEffect(() => {
   },[imgSrc]);
   
  useEffect(()=>{
-   console.log("inside imgprocess effect")
    imgProcess(blob)
  } , [blob])
 

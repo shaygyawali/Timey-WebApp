@@ -3,7 +3,6 @@ import Webcam from 'react-webcam'
 import React, {Component, PropTypes} from 'react';
 import logo from './logo.svg';
 import './App.css';
-import $ from 'jquery';
 
 
 const OPTIONS = {prefix: 'seconds elapsed!', delay: 100}
