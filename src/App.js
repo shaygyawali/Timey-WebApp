@@ -13,7 +13,6 @@ const OPTIONS = {prefix: 'seconds elapsed!', delay: 100}
 function App() {
   return (
     <div className="App">
-      <Timer options={OPTIONS} />
     </div>
   );
 }

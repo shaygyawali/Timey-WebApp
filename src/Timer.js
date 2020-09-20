@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import SecondsTohhmmss from './SecondsTohhmmss'
 import PropTypes from 'prop-types'
+import {connect} from 'react-redux'
 
 let offset = null, interval = null
 
@@ -8,7 +9,7 @@ let offset = null, interval = null
  * Timer module
  * A simple timer component.
 **/
-export default class Timer extends Component {
+class Timer extends Component {
   static get propTypes () {
     return {
       options: PropTypes.object
@@ -113,4 +114,9 @@ export default class Timer extends Component {
       </div>
     )
   }
-}
+} 
+
+const mapStatetoProps = (state) =>({
+  exists: state.exists
+})
+export default connect(mapStatetoProps)(Timer)
