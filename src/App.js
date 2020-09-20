@@ -15,7 +15,6 @@ function App() {
 
     <div class="App">
       <div class = "holder1">
-      <Timer options={OPTIONS}/>
       <svg class="blob" data-name="top right" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 285.71 350.15"><defs>
         </defs>
         <path class="cls-1" 
@@ -23,7 +22,8 @@ function App() {
         transform="translate(-163.14 -295.1)"/>
       </svg>
       </div>
-    </div>
+      </div>
+
   );
 }
 

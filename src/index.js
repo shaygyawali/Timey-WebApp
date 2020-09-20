@@ -4,75 +4,46 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import Webcam from "react-webcam";
+import WebcamCapture from './webCamCapture'
+import {Connect , Provider} from 'react-redux'
+import {createStore} from 'redux'
+import Timer from './Timer.js'
 
+const OPTIONS = {prefix: 'seconds elapsed!', delay: 100}
 
-
-
-const WebcamCapture = () => {
-  const webcamRef = React.useRef(null);
-  const [imgSrc, setImgSrc] = React.useState(null);
-
-  const capture = React.useCallback(() => {
-    if (webcamRef && webcamRef.current) {
-        const imageSrc = webcamRef.current.getScreenshot({width: 200, height: 200});
-        setImgSrc(imageSrc);
-    }
-}, [webcamRef, setImgSrc],);
-
-function imgProcess(picture){
-  var formdata = new FormData();
-formdata.append("file", picture);
-
-var requestOptions = {
-  method: 'POST',
-  body: formdata,
-  mode: 'no-cors'
-};
-console.log(requestOptions)
-
-fetch("http://127.0.0.1:5000/check_face_exists", requestOptions)
-  .then(response => response.text())
-  .then(result => console.log(result))
-  .catch(error => console.log('error', error));
+const inital_state = {
+  exists:true,
 }
 
-/*function convertToBlob(imgSrc){
-  const byteCharacters = atob(imgSrc)
-  const byteNumbers = new Array(byteCharacters.length);
-  for (let i = 0; i<byteCharacters.length; i++){
-    byteNumbers[i] = byteCharacters.charCodeAt(i);
-  }
-  const byteArray = new Uint8Array(byteNumbers);
-  const blob = new Blob([byteArray], {type: 'image/jpeg'});
-  imgProcess(blob)
-}*/
-  
-useEffect(() => {
-  const interval = setInterval(() => {
-    capture()
-    imgProcess(imgSrc)
-  }, 10000);
-  return () => clearInterval(interval);
-}, []);
- 
-  
 
-  return (
-    <>
-    <div className = "cam">
-      <Webcam
-        audio={false}
-        ref={webcamRef}
-        screenshotFormat="image/jpeg"
-      /> </div>
-    </>
-  );
-};
+
+function reducer(state = inital_state, action){
+  switch(action.type){
+    case "USER_LEFT":
+      console.log(action.type)
+      return {
+        exists:false
+      }
+    case "USER_HERE":
+      console.log(action.type)
+      return {
+        exists:true
+      }
+    default:
+      return state
+  }
+}
+const store = createStore(reducer)
+store.dispatch({type:"USER_LEFT"})
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
-    <WebcamCapture />
+    <Provider store={store}>
+      <App />
+      <Timer options={OPTIONS} />
+      <WebcamCapture/>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
