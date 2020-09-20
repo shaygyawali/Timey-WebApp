@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import SecondsTohhmmss from './SecondsTohhmmss'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
+import './index.css';
 
 let offset = null, interval = null
 
@@ -82,14 +83,11 @@ class Timer extends Component {
 
   render() {
     const timerStyle = {
-      margin: "0px",
-      paddingTop: "90px",
-      border: '1px solid pink',
       textAlign: 'center'
     };
 
     const buttonStyle = {
-      background: "#fff",
+      background: "beige",
       color: "black",
       border: "3px solid black",
       marginRight: "5px",
@@ -98,7 +96,6 @@ class Timer extends Component {
     };
 
     const secondsStyles = {
-      paddingTop: 300,
       fontSize: "400%",
       fontWeight: "bolder",
       lineHeight: "1.5",
@@ -108,7 +105,7 @@ class Timer extends Component {
     };
 
     return (
-      <div style={timerStyle} className="react-timer">
+      <div class = "timerDiv" style={timerStyle} className="react-timer">
        <em><h3 style={secondsStyles} className="seconds"> {this.state.time} {this.props.prefix}</h3></em> 
         <br />
         <button onClick={this.reset.bind(this)} style={buttonStyle} >RESET SESSION</button>

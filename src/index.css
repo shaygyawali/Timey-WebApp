@@ -12,8 +12,14 @@ code {
     monospace;
 }
 
+.react-timer{
+  position: relative;
+  margin-top: -500px;
+  align-items: center;
+  z-index: 2;
+}
+
 .cam{
   visibility: hidden;
-  z-index: -999;
 }
 
