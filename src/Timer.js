@@ -82,29 +82,33 @@ export default class Timer extends Component {
   render() {
     const timerStyle = {
       margin: "0px",
-      padding: "2em"
+      paddingTop: "90px",
+      border: '1px solid pink',
+      textAlign: 'center'
     };
 
     const buttonStyle = {
       background: "#fff",
-      color: "#666",
-      border: "1px solid #ddd",
+      color: "black",
+      border: "3px solid black",
       marginRight: "5px",
       padding: "10px",
-      fontWeight: "200"
+      fontWeight: 'bold'
     };
 
     const secondsStyles = {
-      fontSize: "200%",
-      fontWeight: "500",
+      paddingTop: 300,
+      fontSize: "400%",
+      fontWeight: "bolder",
       lineHeight: "1.5",
       margin: "0",
-      color: "#666"
+      color: 'black',
+ 
     };
 
     return (
       <div style={timerStyle} className="react-timer">
-        <h3 style={secondsStyles} className="seconds"> {this.state.time} {this.props.prefix}</h3>
+       <em><h3 style={secondsStyles} className="seconds"> {this.state.time} {this.props.prefix}</h3></em> 
         <br />
         <button onClick={this.reset.bind(this)} style={buttonStyle} >RESET SESSION</button>
         <button onClick={this.play.bind(this)} style={buttonStyle} >START WORK</button>

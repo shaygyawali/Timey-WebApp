@@ -65,8 +65,6 @@ useEffect(() => {
         ref={webcamRef}
         screenshotFormat="image/jpeg"
       /> </div>
-        <img
-          src={imgSrc}></img>
     </>
   );
 };
