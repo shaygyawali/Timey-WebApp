@@ -67,7 +67,7 @@ class Timer extends Component {
 
   tick(){
       console.log(this.state.clock)
-      if(this.state.clock > 50000){
+      if(this.state.clock > 60000){
           this.reset()
           this.pause()
       }

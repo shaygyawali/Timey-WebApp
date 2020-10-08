@@ -1,7 +1,5 @@
-import Timer from './Timer.js';
-import Webcam from 'react-webcam'
-import React, {Component, PropTypes} from 'react';
-import logo from './logo.svg';
+
+import React from 'react';
 import './App.css';
 
 
